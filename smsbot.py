@@ -88,6 +88,7 @@ class main():
             except Exception as e:
                 print(re+"[!] Error:", e)
                 print(re+"[!] Trying to continue...")
+                finally
                 continue
         client.disconnect()
         print("Done. Message sent to all users.")
