@@ -11,7 +11,7 @@ import time
 re="\033[1;31m"
 gr="\033[1;32m"
 cy="\033[1;36m"
-SLEEP_TIME = 30
+SLEEP_TIME = 0
 
 class main():
 
@@ -64,32 +64,6 @@ class main():
         mode = int(input(gr+"Input : "+re))
          
         message = input(gr+"[+] Enter Your Message : "+re)
-         
-        for user in users:
-            if mode == 2:
-                if user['username'] == "":
-                    continue
-                receiver = client.get_input_entity(user['username'])
-            elif mode == 1:
-                receiver = InputPeerUser(user['id'],user['access_hash'])
-            else:
-                print(re+"[!] Invalid Mode. Exiting.")
-                client.disconnect()
-                sys.exit()
-            try:
-                print(gr+"[+] Sending Message to:", user['name'])
-                client.send_message(receiver, message.format(user['name']))
-                print(gr+"[+] Waiting {} seconds".format(SLEEP_TIME))
-                time.sleep(1)
-            except PeerFloodError:
-                print(re+"[!] Getting Flood Error from telegram. \n[!] Script is stopping now. \n[!] Please try again after some time.")
-                client.disconnect()
-                sys.exit()
-            except Exception as e:
-                print(re+"[!] Error:", e)
-                print(re+"[!] Trying to continue...")
-                finally
-                continue
         client.disconnect()
         print("Done. Message sent to all users.")
 
